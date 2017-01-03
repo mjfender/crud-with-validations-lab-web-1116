@@ -1,0 +1,28 @@
+<table>
+  <thead>
+    <tr>
+      <th>Song Title</th>
+      <th>Song Artist</th>
+      <th>Release Year</th>
+      <th>Delete?</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+<% @songs.each do |song| %>
+    <tr>
+      <td><%= link_to song.title, song_path(song) %></td>
+      <td><%= song.artist_name %></td>
+      <% if song.released %>
+        <td><%= song.release_year %></td>
+      <% end %>
+      <td>
+        <%= form_tag song_path(song), method: :delete do %>
+          <%= submit_tag "Delete Song" %>
+        <% end %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
